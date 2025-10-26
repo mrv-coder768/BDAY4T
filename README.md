@@ -106,7 +106,7 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 
 <div class="content" id="content">
   <h1>🎂 Countdown to Theerdhani’s Birthday 🎂</h1>
-  <h2>Born in 2008 — Waiting for Nov 9 2025 🎉</h2>
+  <h1>Advance Happy Birthday! 🎉</h1>
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
     <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
