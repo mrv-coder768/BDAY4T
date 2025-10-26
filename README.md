@@ -9,7 +9,7 @@ html,body {margin:0;padding:0;height:100%;overflow:hidden;
   background: radial-gradient(circle at bottom,#000b18 0%,#00030a 100%);
   font-family:'Poppins',sans-serif;color:#fff;text-align:center;}
 canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
-.content{position:relative;z-index:5;top:70%;
+.content{position:relative;z-index:5;top:70%; /* moved further down */
   transform:translateY(-50%);
   padding:0 20px;max-width:700px;margin:auto;transition: all 1s ease;opacity:1;}
 h1{font-size:clamp(2em,5vw,3em);color:#ffcbf2;text-shadow:0 0 25px #ff1b8d,0 0 50px #ff66b3;
@@ -37,20 +37,26 @@ p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
 .time-box span {display: block; font-size: clamp(2em, 10vw, 3em); font-weight: bold; color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #6a82fb; animation: pulse 1s infinite alternate;}
 .time-box small {display: block; font-size: clamp(0.8em, 3vw, 1em); color: #dcdcff; margin-top: 5px; text-shadow: 0 0 5px #6a82fb;}
 @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
-#overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:999;
-  display:flex;justify-content:center;align-items:center;flex-direction:column;
+button#playMusicBtn{margin-top:20px;background:linear-gradient(90deg,#ffcc66,#ff66b3);
+  color:white;border:none;padding:12px 25px;font-size:1em;border-radius:30px;
+  cursor:pointer;transition:transform .2s;}
+button#playMusicBtn:hover{transform:scale(1.08);}
+
+/* Mobile adjustments */
+@media(max-width:480px){
+  .floating-photo{width:120px;height:120px;bottom:5%;}
+  h1{font-size:clamp(1.5em,7vw,2.5em);}
+  h2{font-size:clamp(1.2em,5vw,2em);}
+  p{font-size:clamp(0.9em,3vw,1.1em);}
 }
-#overlay button{padding:20px 40px;font-size:1.5em;border-radius:30px;border:none;background:linear-gradient(90deg,#ffcc66,#ff66b3);color:white;cursor:pointer;}
-#overlay button:hover{transform:scale(1.08);transition:transform 0.2s;}
+
+@media(max-width:400px){
+  .countdown{flex-wrap:wrap; justify-content:center;}
+  .time-box{flex: 1 1 40%; margin-bottom:10px;}
+}
 </style>
 </head>
 <body>
-
-<div id="overlay">
-  <h1>🎵 Tap to Start Music 🎵</h1>
-  <button id="startBtn">Start</button>
-</div>
 
 <canvas id="fireworks"></canvas>
 <div class="hearts" id="hearts"></div>
@@ -69,12 +75,15 @@ p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
     <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
   </div>
   <p id="msg">Get ready for the surprise 💫</p>
+  <button id="playMusicBtn">🔊 Play Music</button>
 </div>
 
-<!-- Audio -->
+<!-- Countdown music -->
 <audio id="bgmCountdown" loop>
   <source src="Liquid Time - Aakash Gandhi (mp3cut.net).mp3" type="audio/mp3">
 </audio>
+
+<!-- Birthday music -->
 <audio id="bgmBirthday" loop>
   <source src="theuned_happy-birthday-crowd(chosic.com).mp3" type="audio/mp3">
 </audio>
@@ -109,9 +118,11 @@ function fadeToBirthday(){
 
 // ---------------- Birthday ----------------
 function startBirthday(){
-  document.getElementById("bgmCountdown").pause(); 
-  document.getElementById("bgmCountdown").currentTime=0;
-  document.getElementById("bgmBirthday").play().catch(()=>{});
+  const countdownMusic = document.getElementById("bgmCountdown");
+  countdownMusic.pause(); countdownMusic.currentTime=0;
+
+  const birthdayMusic = document.getElementById("bgmBirthday");
+  birthdayMusic.play().catch(()=>{});
 
   const content = document.getElementById("content");
   content.innerHTML=`
@@ -132,10 +143,11 @@ function startBirthday(){
   photo.classList.add("show");
 }
 
-// ---------------- Overlay Start Music ----------------
-document.getElementById("startBtn").addEventListener("click", ()=>{
-  document.getElementById("bgmCountdown").play().catch(()=>{});
-  document.getElementById("overlay").style.display="none";
+// ---------------- Play Countdown Music Button ----------------
+const countdownMusic = document.getElementById("bgmCountdown");
+document.getElementById("playMusicBtn").addEventListener("click", ()=>{
+  countdownMusic.play().catch(()=>{});
+  document.getElementById("playMusicBtn").style.display="none";
 });
 
 // ---------------- Hearts ----------------
