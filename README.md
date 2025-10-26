@@ -9,8 +9,7 @@ html,body {margin:0;padding:0;height:100%;overflow:hidden;
   background: radial-gradient(circle at bottom,#000b18 0%,#00030a 100%);
   font-family:'Poppins',sans-serif;color:#fff;text-align:center;}
 canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
-.content{position:relative;z-index:5;top:60%; /* moved slightly down */
-  transform:translateY(-50%);
+.content{position:relative;z-index:5;top:50%;transform:translateY(-50%);
   padding:0 20px;max-width:700px;margin:auto;transition: all 1s ease;opacity:1;}
 h1{font-size:clamp(2em,5vw,3em);color:#ffcbf2;text-shadow:0 0 25px #ff1b8d,0 0 50px #ff66b3;
    animation:glow 2s ease-in-out infinite alternate;margin-bottom:10px;}
@@ -204,4 +203,22 @@ class Firework{
   update(){
     if(this.y>this.ty)this.y-=this.speed;
     else if(!this.parts.length)this.explode();
-    this.parts.forEach(p=>{p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.a
+    this.parts.forEach(p=>{p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.a-=0.01;});
+    this.parts=this.parts.filter(p=>p.a>0);
+  }
+  draw(){
+    ctx.beginPath();ctx.fillStyle=this.color;
+    ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();
+    this.parts.forEach(p=>{ctx.fillStyle=this.color.replace("60%",`${p.a*100}%`);ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();});
+  }
+}
+function animate(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";ctx.fillRect(0,0,w,h);
+  if(Math.random()<0.05)fireworks.push(new Firework());
+  fireworks.forEach((f,i)=>{f.update(); f.draw(); if(f.parts.length===0&&f.y<=f.ty)fireworks.splice(i,1);});
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+</body>
+</html>
