@@ -5,16 +5,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Happy Birthday Theerdhani 🎉</title>
 <style>
-html,body {margin:0;padding:0;height:100%;overflow:hidden;
+html,body {
+  margin:0;padding:0;height:100%;overflow:hidden;
   background: radial-gradient(circle at bottom,#000b18 0%,#00030a 100%);
-  font-family:'Poppins',sans-serif;color:#fff;text-align:center;}
+  font-family:'Poppins',sans-serif;color:#fff;text-align:center;
+}
 canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;}
-.content{position:relative;z-index:5;top:50%;transform:translateY(-50%);
-  padding:0 20px;max-width:700px;margin:auto;transition: all 1s ease;opacity:1;}
-h1{font-size:clamp(2em,5vw,3em);color:#ffcbf2;text-shadow:0 0 25px #ff1b8d,0 0 50px #ff66b3;
-   animation:glow 2s ease-in-out infinite alternate;margin-bottom:10px;}
+.content{
+  position:relative;z-index:5;top:50%;transform:translateY(-50%);
+  padding:0 20px;max-width:700px;margin:auto;transition: all 1s ease;opacity:1;
+}
+h1{
+  font-size:clamp(2em,5vw,3em);color:#ffcbf2;
+  text-shadow:0 0 25px #ff1b8d,0 0 50px #ff66b3;
+  animation:glow 2s ease-in-out infinite alternate;margin-bottom:10px;
+}
 @keyframes glow{from{text-shadow:0 0 15px #ff66b3;}to{text-shadow:0 0 45px #ff1b8d;}}
-h2{font-size:clamp(1.5em,4vw,2em);color:#ffd6ff;margin-top:10px;animation:jump 1s infinite alternate;}
+h2{
+  font-size:clamp(1.5em,4vw,2em);color:#ffd6ff;
+  margin-top:10px;animation:jump 1s infinite alternate;
+}
 @keyframes jump{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
 .gift{font-size:1.5em;color:#ffd700;font-weight:bold;margin-top:20px;text-shadow:0 0 20px #ffdd33;}
@@ -24,34 +34,64 @@ p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
   box-shadow:0 0 40px #ff66b3,0 0 80px #ff1b8d;
   opacity:0; transition: all 1.5s ease; z-index:3;
 }
-.floating-photo.show{opacity:1; transform:translateX(-50%) translateY(0);}
+.floating-photo.show{
+  opacity:1;
+  animation: floatUpDown 3s ease-in-out infinite alternate;
+}
+@keyframes floatUpDown {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-20px); }
+}
 .hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:2;}
-.heart{position:absolute;bottom:0;width:20px;height:20px;background:#ff80c1;opacity:.7;
+.heart{
+  position:absolute;bottom:0;width:20px;height:20px;background:#ff80c1;opacity:.7;
   clip-path:polygon(50% 0%,61% 15%,75% 15%,85% 25%,85% 40%,50% 75%,15% 40%,15% 25%,25% 15%,39% 15%);
-  animation:floatHearts linear infinite;}
-@keyframes floatHearts{0%{transform:translateY(0) scale(1);opacity:1;}100%{transform:translateY(-100vh) scale(1.5);opacity:0;}}
-.confetti-piece{position:absolute;width:10px;height:10px;background:yellow;opacity:0.8;z-index:4; border-radius:50%;}
-.countdown {display:flex; justify-content:center; gap:20px; margin-top:30px; flex-wrap:wrap;}
-.time-box {background: linear-gradient(135deg, #6a82fb, #fc5c7d); border-radius: 20px; padding: 20px 25px; box-shadow: 0 0 25px rgba(106,130,251,0.8), 0 0 50px rgba(252,92,125,0.5); text-align: center;}
-.time-box span {display: block; font-size: clamp(2em, 10vw, 3em); font-weight: bold; color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #6a82fb; animation: pulse 1s infinite alternate;}
-.time-box small {display: block; font-size: clamp(0.8em, 3vw, 1em); color: #dcdcff; margin-top: 5px; text-shadow: 0 0 5px #6a82fb;}
-@keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
-button#playMusicBtn{margin-top:20px;background:linear-gradient(90deg,#ffcc66,#ff66b3);
+  animation:floatHearts linear infinite;
+}
+@keyframes floatHearts{
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-100vh) scale(1.5);opacity:0;}
+}
+.confetti-piece{
+  position:absolute;width:10px;height:10px;background:yellow;opacity:0.8;z-index:4;border-radius:50%;
+}
+.countdown {
+  display:flex;justify-content:center;gap:20px;margin-top:30px;flex-wrap:wrap;
+}
+.time-box {
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+  border-radius: 20px;padding: 20px 25px;
+  box-shadow: 0 0 25px rgba(106,130,251,0.8), 0 0 50px rgba(252,92,125,0.5);
+  text-align: center;
+}
+.time-box span {
+  display:block;font-size:clamp(2em, 10vw, 3em);font-weight:bold;color:#fff;
+  text-shadow:0 0 20px #fff, 0 0 40px #6a82fb;animation:pulse 1s infinite alternate;
+}
+.time-box small {
+  display:block;font-size:clamp(0.8em,3vw,1em);color:#dcdcff;margin-top:5px;text-shadow:0 0 5px #6a82fb;
+}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
+button#playMusicBtn{
+  margin-top:20px;background:linear-gradient(90deg,#ffcc66,#ff66b3);
   color:white;border:none;padding:12px 25px;font-size:1em;border-radius:30px;
-  cursor:pointer;transition:transform .2s;}
+  cursor:pointer;transition:transform .2s;display:none;
+}
 button#playMusicBtn:hover{transform:scale(1.08);}
 
 /* Mobile adjustments */
+@media(max-width:600px){
+  .content{top:55%;}
+}
 @media(max-width:480px){
   .floating-photo{width:120px;height:120px;bottom:5%;}
   h1{font-size:clamp(1.5em,7vw,2.5em);}
   h2{font-size:clamp(1.2em,5vw,2em);}
   p{font-size:clamp(0.9em,3vw,1.1em);}
 }
-
 @media(max-width:400px){
-  .countdown{flex-wrap:wrap; justify-content:center;}
-  .time-box{flex: 1 1 40%; margin-bottom:10px;}
+  .countdown{flex-wrap:wrap;justify-content:center;}
+  .time-box{flex:1 1 40%;margin-bottom:10px;}
 }
 </style>
 </head>
@@ -89,22 +129,24 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 
 <script>
 // ---------------- Countdown ----------------
-const target=new Date("2025-11-08T23:59:59").getTime();
-const daysEl=document.getElementById("days"), hoursEl=document.getElementById("hours");
-const minutesEl=document.getElementById("minutes"), secondsEl=document.getElementById("seconds");
+const target = new Date("2025-11-08T23:59:59").getTime();
+const daysEl=document.getElementById("days"),
+      hoursEl=document.getElementById("hours"),
+      minutesEl=document.getElementById("minutes"),
+      secondsEl=document.getElementById("seconds");
 
-const countdownInterval=setInterval(()=>{
- const now=new Date().getTime();
- const diff=target-now;
- if(diff<=0){clearInterval(countdownInterval);fadeToBirthday();return;}
- const d=Math.floor(diff/(1000*60*60*24));
- const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
- const m=Math.floor((diff%(1000*60*60))/(1000*60));
- const s=Math.floor((diff%(1000*60))/1000);
- daysEl.textContent=d.toString().padStart(2,'0');
- hoursEl.textContent=h.toString().padStart(2,'0');
- minutesEl.textContent=m.toString().padStart(2,'0');
- secondsEl.textContent=s.toString().padStart(2,'0');
+const countdownInterval = setInterval(()=>{
+ const now = new Date().getTime();
+ const diff = target - now;
+ if(diff <= 0){ clearInterval(countdownInterval); fadeToBirthday(); return; }
+ const d = Math.floor(diff/(1000*60*60*24));
+ const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+ const m = Math.floor((diff%(1000*60*60))/(1000*60));
+ const s = Math.floor((diff%(1000*60))/1000);
+ daysEl.textContent = d.toString().padStart(2,'0');
+ hoursEl.textContent = h.toString().padStart(2,'0');
+ minutesEl.textContent = m.toString().padStart(2,'0');
+ secondsEl.textContent = s.toString().padStart(2,'0');
 },1000);
 
 // ---------------- Fade and start Birthday ----------------
@@ -142,8 +184,14 @@ function startBirthday(){
   photo.classList.add("show");
 }
 
-// ---------------- Play Countdown Music Button ----------------
+// ---------------- Auto Play Countdown Music ----------------
 const countdownMusic = document.getElementById("bgmCountdown");
+window.addEventListener("load", ()=>{
+  countdownMusic.play().catch(()=>{
+    // if autoplay is blocked, show button
+    document.getElementById("playMusicBtn").style.display="block";
+  });
+});
 document.getElementById("playMusicBtn").addEventListener("click", ()=>{
   countdownMusic.play().catch(()=>{});
   document.getElementById("playMusicBtn").style.display="none";
@@ -162,19 +210,19 @@ setInterval(createHeart,400);
 
 // ---------------- Confetti ----------------
 function createConfetti(){
-  const colors = ["#ff66b3", "#ffd700", "#ff80c1", "#6a82fb", "#fc5c7d"];
+  const colors=["#ff66b3","#ffd700","#ff80c1","#6a82fb","#fc5c7d"];
   const confetti=document.createElement("div");
   confetti.className="confetti-piece";
-  confetti.style.background = colors[Math.floor(Math.random()*colors.length)];
-  confetti.style.left = Math.random()*100 + "vw";
-  confetti.style.top = "-10px";
+  confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
+  confetti.style.left=Math.random()*100+"vw";
+  confetti.style.top="-10px";
   document.body.appendChild(confetti);
   let fall=0;
   const fallInterval=setInterval(()=>{
     fall+=5+Math.random()*5;
     confetti.style.top=fall+"px";
     confetti.style.transform=`rotate(${fall*3}deg)`;
-    if(fall>window.innerHeight){confetti.remove(); clearInterval(fallInterval);}
+    if(fall>window.innerHeight){confetti.remove();clearInterval(fallInterval);}
   },30);
 }
 setInterval(createConfetti,200);
@@ -182,7 +230,7 @@ setInterval(createConfetti,200);
 // ---------------- Fireworks ----------------
 const canvas=document.getElementById("fireworks"),ctx=canvas.getContext("2d");
 let w,h;
-function resize(){w=canvas.width=innerWidth; h=canvas.height=innerHeight;}
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight;}
 window.addEventListener("resize",resize);resize();
 
 let fireworks=[];
@@ -203,19 +251,25 @@ class Firework{
   update(){
     if(this.y>this.ty)this.y-=this.speed;
     else if(!this.parts.length)this.explode();
-    this.parts.forEach(p=>{p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.a-=0.01;});
+    this.parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.05;p.a-=0.01;});
     this.parts=this.parts.filter(p=>p.a>0);
   }
   draw(){
     ctx.beginPath();ctx.fillStyle=this.color;
     ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();
-    this.parts.forEach(p=>{ctx.fillStyle=this.color.replace("60%",`${p.a*100}%`);ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();});
+    this.parts.forEach(p=>{
+      ctx.fillStyle=this.color.replace("60%",`${p.a*100}%`);
+      ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
+    });
   }
 }
 function animate(){
   ctx.fillStyle="rgba(0,0,0,0.2)";ctx.fillRect(0,0,w,h);
   if(Math.random()<0.05)fireworks.push(new Firework());
-  fireworks.forEach((f,i)=>{f.update(); f.draw(); if(f.parts.length===0&&f.y<=f.ty)fireworks.splice(i,1);});
+  fireworks.forEach((f,i)=>{
+    f.update();f.draw();
+    if(f.parts.length===0&&f.y<=f.ty)fireworks.splice(i,1);
+  });
   requestAnimationFrame(animate);
 }
 animate();
