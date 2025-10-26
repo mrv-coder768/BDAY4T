@@ -31,15 +31,28 @@ p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
   animation:floatHearts linear infinite;}
 @keyframes floatHearts{0%{transform:translateY(0) scale(1);opacity:1;}100%{transform:translateY(-100vh) scale(1.5);opacity:0;}}
 .confetti-piece{position:absolute;width:10px;height:10px;background:yellow;opacity:0.8;z-index:4; border-radius:50%;}
-.countdown {display:flex; justify-content:center; gap:20px; margin-top:30px;}
+.countdown {display:flex; justify-content:center; gap:20px; margin-top:30px; flex-wrap:wrap;}
 .time-box {background: linear-gradient(135deg, #6a82fb, #fc5c7d); border-radius: 20px; padding: 20px 25px; box-shadow: 0 0 25px rgba(106,130,251,0.8), 0 0 50px rgba(252,92,125,0.5); text-align: center;}
-.time-box span {display: block; font-size: 3em; font-weight: bold; color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #6a82fb; animation: pulse 1s infinite alternate;}
-.time-box small {display: block; font-size: 1em; color: #dcdcff; margin-top: 5px; text-shadow: 0 0 5px #6a82fb;}
+.time-box span {display: block; font-size: clamp(2em, 10vw, 3em); font-weight: bold; color: #fff; text-shadow: 0 0 20px #fff, 0 0 40px #6a82fb; animation: pulse 1s infinite alternate;}
+.time-box small {display: block; font-size: clamp(0.8em, 3vw, 1em); color: #dcdcff; margin-top: 5px; text-shadow: 0 0 5px #6a82fb;}
 @keyframes pulse {0%{transform:scale(1);}50%{transform:scale(1.1);}100%{transform:scale(1);}}
-button{margin-top:20px;background:linear-gradient(90deg,#ffcc66,#ff66b3);
+button#playMusicBtn{margin-top:20px;background:linear-gradient(90deg,#ffcc66,#ff66b3);
   color:white;border:none;padding:12px 25px;font-size:1em;border-radius:30px;
   cursor:pointer;transition:transform .2s;}
-button:hover{transform:scale(1.08);}
+button#playMusicBtn:hover{transform:scale(1.08);}
+
+/* Mobile adjustments */
+@media(max-width:480px){
+  .floating-photo{width:120px;height:120px;bottom:5%;}
+  h1{font-size:clamp(1.5em,7vw,2.5em);}
+  h2{font-size:clamp(1.2em,5vw,2em);}
+  p{font-size:clamp(0.9em,3vw,1.1em);}
+}
+
+@media(max-width:400px){
+  .countdown{flex-wrap:wrap; justify-content:center;}
+  .time-box{flex: 1 1 40%; margin-bottom:10px;}
+}
 </style>
 </head>
 <body>
@@ -61,6 +74,7 @@ button:hover{transform:scale(1.08);}
     <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
   </div>
   <p id="msg">Get ready for the surprise 💫</p>
+  <button id="playMusicBtn">🔊 Play Music</button>
 </div>
 
 <!-- Countdown music -->
@@ -127,6 +141,13 @@ function startBirthday(){
   photo.style.display="block";
   photo.classList.add("show");
 }
+
+// ---------------- Play Countdown Music Button ----------------
+const countdownMusic = document.getElementById("bgmCountdown");
+document.getElementById("playMusicBtn").addEventListener("click", ()=>{
+  countdownMusic.play().catch(()=>{});
+  document.getElementById("playMusicBtn").style.display="none";
+});
 
 // ---------------- Hearts ----------------
 function createHeart(){
@@ -198,16 +219,6 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate();
-
-// ---------------- Autoplay Countdown Music ----------------
-window.addEventListener('load',()=>{
-  const countdownMusic=document.getElementById("bgmCountdown");
-  countdownMusic.play().catch(()=>{
-    countdownMusic.muted=true;
-    countdownMusic.play().then(()=>{countdownMusic.muted=false;}).catch(()=>{});
-  });
-});
 </script>
 </body>
 </html>
-
