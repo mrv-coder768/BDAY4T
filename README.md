@@ -100,14 +100,16 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 
 <div class="content" id="content">
   <h1> ...</h1>
-  <h2>🎂 Countdown to Nirmala’s Birthday, Advance Happy Birthday! 🎉</h2>
+  <h2>🎂 Countdown to Nirmala's Birthday 🎉</h2>
+  <h3>Advance happy birtday</h3>
+  
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
     <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
     <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
     <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
   </div>
-  <p id="msg"> 💫</p>
+  <p id="msg"> !!💫!!</p>
   <button id="playMusicBtn">🔊 Play Music</button>
 </div>
 
