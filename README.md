@@ -99,8 +99,8 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 <div class="hearts" id="hearts"></div>
 
 <div class="content" id="content">
-  <h1> desktop site me dekho for good view<h/1>
-  <h1>🎂 Countdown to Nirmala's Birthday 🎉</h1>
+ 
+  <h1>🎂-------------------- Countdown to Nirmala's Birthday 🎉</h1>
   
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
