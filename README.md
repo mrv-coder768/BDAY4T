@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Happy Birthday Theerdhani 🎉</title>
+<title>Happy Birthday Nirmala 🎉</title>
 <style>
 html,body {
   margin:0;padding:0;height:100%;overflow:hidden;
@@ -28,20 +28,6 @@ h2{
 @keyframes jump{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 p{font-size:clamp(1em,3vw,1.2em);color:#fff0ff;margin-top:10px;line-height:1.5;}
 .gift{font-size:1.5em;color:#ffd700;font-weight:bold;margin-top:20px;text-shadow:0 0 20px #ffdd33;}
-.floating-photo{
-  position:fixed;bottom:10%;left:50%;transform:translateX(-50%) translateY(50px);
-  width:180px;height:180px;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 40px #ff66b3,0 0 80px #ff1b8d;
-  opacity:0; transition: all 1.5s ease; z-index:3;
-}
-.floating-photo.show{
-  opacity:1;
-  animation: floatUpDown 3s ease-in-out infinite alternate;
-}
-@keyframes floatUpDown {
-  from { transform: translateX(-50%) translateY(0); }
-  to { transform: translateX(-50%) translateY(-20px); }
-}
 .hearts{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:2;}
 .heart{
   position:absolute;bottom:0;width:20px;height:20px;background:#ff80c1;opacity:.7;
@@ -84,7 +70,6 @@ button#playMusicBtn:hover{transform:scale(1.08);}
   .content{top:55%;}
 }
 @media(max-width:480px){
-  .floating-photo{width:120px;height:120px;bottom:5%;}
   h1{font-size:clamp(1.5em,7vw,2.5em);}
   h2{font-size:clamp(1.2em,5vw,2em);}
   p{font-size:clamp(0.9em,3vw,1.1em);}
@@ -93,6 +78,19 @@ button#playMusicBtn:hover{transform:scale(1.08);}
   .countdown{flex-wrap:wrap;justify-content:center;}
   .time-box{flex:1 1 40%;margin-bottom:10px;}
 }
+
+/* Final screen styles (overlay) */
+.final-overlay {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  background: rgba(255,20,147,0.9); backdrop-filter: blur(4px);
+  display:none; z-index:6; padding:70px 20px; box-sizing:border-box; overflow:auto;
+}
+.final-overlay h1 { font-size:clamp(2.2em,6vw,3.2em); color:#fff; text-shadow:0 0 30px #ff66b3; }
+.final-overlay p { color:#fff8ff; font-size:1.05rem; line-height:1.6; margin-top:15px; }
+.final-overlay .closeBtn {
+  margin-top:25px; padding:10px 18px; border-radius:30px; border:none;
+  background:#fff;color:#ff0066;font-weight:700; cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -100,20 +98,16 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 <canvas id="fireworks"></canvas>
 <div class="hearts" id="hearts"></div>
 
-<div class="floating-photo" id="photo">
-  <img src="bird1.PNG" alt="Theerdhani's Floating Photo" style="width:100%;height:100%;">
-</div>
-
 <div class="content" id="content">
-  <h1>🎂 Countdown to Theerdhani’s Birthday 🎂</h1>
-  <h1>Advance Happy Birthday! 🎉</h1>
+  <h1>🎂 Countdown to Nirmala’s Birthday 🎂</h1>
+  <h2>Advance Happy Birthday! 🎉</h2>
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
     <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
     <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
     <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
   </div>
-  <p id="msg">Get ready for the surprise 💫</p>
+  <p id="msg"> 💫</p>
   <button id="playMusicBtn">🔊 Play Music</button>
 </div>
 
@@ -127,16 +121,32 @@ button#playMusicBtn:hover{transform:scale(1.08);}
   <source src="theuned_happy-birthday-crowd(chosic.com).mp3" type="audio/mp3">
 </audio>
 
+<!-- Final overlay -->
+<div class="final-overlay" id="finalOverlay">
+  <h1>💖 Happy Birthday, Dear Nirmala 💖</h1>
+  <p>
+    Dear Nirmala, today is your special day! 🌟 May your smile light up every corner of the world,
+    may laughter and joy follow you wherever you go, and may all your dreams turn into reality 💫.
+  </p>
+  <p>
+    On this magical day, may happiness surround you, your heart be filled with love,
+    and every moment be more beautiful than the last. 💖🎂
+  </p>
+  <p class="gift">🎁 Your Special Gift: A token of love and appreciation 💝</p>
+  <p>With endless love, hugs, and blessings — Have the happiest birthday ever!</p>
+  <button class="closeBtn" id="closeOverlay">Close ✨</button>
+</div>
+
 <script>
 // ---------------- Countdown ----------------
-const target = new Date("2025-11-08T23:59:59").getTime();
+const target = new Date("2026-01-16T00:00:00").getTime();
 const daysEl=document.getElementById("days"),
       hoursEl=document.getElementById("hours"),
       minutesEl=document.getElementById("minutes"),
       secondsEl=document.getElementById("seconds");
 
 const countdownInterval = setInterval(()=>{
- const now = new Date().getTime();
+ const now = Date.now();
  const diff = target - now;
  if(diff <= 0){ clearInterval(countdownInterval); fadeToBirthday(); return; }
  const d = Math.floor(diff/(1000*60*60*24));
@@ -167,21 +177,23 @@ function startBirthday(){
 
   const content = document.getElementById("content");
   content.innerHTML=`
-    <h1>💖 Happy Birthday, Dear Theerdhani 💖</h1>
-    <h2>Born in 2008 — Shine Bright Always! ✨🎉</h2>
-    <p>Dear Theerdhani, today is your special day! 🌟 May your smile light up every corner of the world,  
+    <h1>💖 Happy Birthday, Dear Nirmala 💖</h1>
+    <h2>Shine Bright Always! ✨🎉</h2>
+    <p>Dear Nirmala, today is your special day! 🌟 May your smile light up every corner of the world,  
        may laughter and joy follow you wherever you go, and may all your dreams turn into reality 💫.</p>
     <p>On this magical day, may happiness surround you, your heart be filled with love,  
        and every moment be more beautiful than the last. 💖🎂</p>
-    <p>You are amazing, inspiring, and bring so much light to everyone around you.  
-       Never stop dreaming, keep smiling, and enjoy every second of your birthday celebration! 🎉🎈</p>
-    <p class="gift">🎁 Your Special Gift: Premium Watch ⌚ — A token of love and appreciation 💝</p>
-    <p>With endless love, hugs, and blessings from Mourya 🤗💖 — Have the happiest birthday ever!</p>
+    <p class="gift">🎁 Your Special Gift: Premium surprise — A token of love and appreciation 💝</p>
+    <p>With endless love, hugs, and blessings — Have the happiest birthday ever!</p>
   `;
   content.style.opacity=1;
-  const photo=document.getElementById("photo");
-  photo.style.display="block";
-  photo.classList.add("show");
+
+  // show final overlay with message
+  const overlay = document.getElementById("finalOverlay");
+  overlay.style.display = "block";
+
+  // start heart & confetti & fireworks more actively
+  startConfettiBurst();
 }
 
 // ---------------- Auto Play Countdown Music ----------------
@@ -227,6 +239,11 @@ function createConfetti(){
 }
 setInterval(createConfetti,200);
 
+// extra confetti burst when birthday starts
+function startConfettiBurst(){
+  for(let i=0;i<50;i++){ setTimeout(createConfetti, i*60); }
+}
+
 // ---------------- Fireworks ----------------
 const canvas=document.getElementById("fireworks"),ctx=canvas.getContext("2d");
 let w,h;
@@ -245,7 +262,9 @@ class Firework{
   }
   explode(){
     for(let i=0;i<50;i++){
-      this.parts.push({x:this.x,y:this.y,vx:Math.cos(i*6)*Math.random()*4,vy:Math.sin(i*6)*Math.random()*4,a:1});
+      const angle = Math.random()*Math.PI*2;
+      const speed = Math.random()*4+1;
+      this.parts.push({x:this.x,y:this.y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,a:1,color:this.color});
     }
   }
   update(){
@@ -255,24 +274,32 @@ class Firework{
     this.parts=this.parts.filter(p=>p.a>0);
   }
   draw(){
-    ctx.beginPath();ctx.fillStyle=this.color;
-    ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();
+    if(this.parts.length===0){
+      ctx.beginPath();ctx.fillStyle=this.color;ctx.arc(this.x,this.y,3,0,Math.PI*2);ctx.fill();
+    }
     this.parts.forEach(p=>{
-      ctx.fillStyle=this.color.replace("60%",`${p.a*100}%`);
+      ctx.globalAlpha = p.a;
+      ctx.fillStyle = p.color;
       ctx.beginPath();ctx.arc(p.x,p.y,2,0,Math.PI*2);ctx.fill();
+      ctx.globalAlpha = 1;
     });
   }
 }
 function animate(){
   ctx.fillStyle="rgba(0,0,0,0.2)";ctx.fillRect(0,0,w,h);
-  if(Math.random()<0.05)fireworks.push(new Firework());
+  if(Math.random()<0.03)fireworks.push(new Firework());
   fireworks.forEach((f,i)=>{
     f.update();f.draw();
-    if(f.parts.length===0&&f.y<=f.ty)fireworks.splice(i,1);
+    if(f.parts.length===0 && f.y<=f.ty) fireworks.splice(i,1);
   });
   requestAnimationFrame(animate);
 }
 animate();
+
+// ---------------- Final overlay close ----------------
+document.getElementById("closeOverlay").addEventListener("click", ()=>{
+  document.getElementById("finalOverlay").style.display = "none";
+});
 </script>
 </body>
 </html>
