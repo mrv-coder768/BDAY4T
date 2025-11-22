@@ -99,8 +99,8 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 <div class="hearts" id="hearts"></div>
 
 <div class="content" id="content">
-  <h1> ...</h1>
-  <h2>🎂 Countdown to Nirmala's Birthday 🎉</h2>
+  
+  <h1>🎂 Countdown to Nirmala's Birthday 🎉</h1>
   
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
@@ -108,7 +108,7 @@ button#playMusicBtn:hover{transform:scale(1.08);}
     <div class="time-box"><span id="minutes">00</span><small>Minutes</small></div>
     <div class="time-box"><span id="seconds">00</span><small>Seconds</small></div>
   </div>
-  <p id="msg"> Advance appy birthday💫!!</p>
+  <p id="msg"> Advance happy birthday💫!!</p>
   <button id="playMusicBtn">🔊 Play Music</button>
 </div>
 
