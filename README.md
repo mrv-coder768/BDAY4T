@@ -99,8 +99,8 @@ button#playMusicBtn:hover{transform:scale(1.08);}
 <div class="hearts" id="hearts"></div>
 
 <div class="content" id="content">
-  <h1>🎂 Countdown to Nirmala’s Birthday 🎂</h1>
-  <h2>Advance Happy Birthday! 🎉</h2>
+  <h1> ...</h1>
+  <h2>🎂 Countdown to Nirmala’s Birthday, Advance Happy Birthday! 🎉</h2>
   <div class="countdown" id="countdown">
     <div class="time-box"><span id="days">00</span><small>Days</small></div>
     <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
@@ -183,8 +183,8 @@ function startBirthday(){
        may laughter and joy follow you wherever you go, and may all your dreams turn into reality 💫.</p>
     <p>On this magical day, may happiness surround you, your heart be filled with love,  
        and every moment be more beautiful than the last. 💖🎂</p>
-    <p class="gift">🎁 Your Special Gift: Premium surprise — A token of love and appreciation 💝</p>
-    <p>With endless love, hugs, and blessings — Have the happiest birthday ever!</p>
+    <p class="gift">🎁 — A token of love and appreciation 💝</p>
+    <p>With endless love — Have the happiest birthday ever!</p>
   `;
   content.style.opacity=1;
 
